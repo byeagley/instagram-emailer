@@ -27,7 +27,7 @@ def main():
     config = dotenv_values(".env")
 
     client = Client()
-    client.login(config["USERNAME"], config["PASSWORD"])
+    client.login(config["INSTAGRAM_USERNAME"], config["INSTAGRAM_PASSWORD"])
 
     unread_messages = get_unread_messages(client)
     print(unread_messages)
