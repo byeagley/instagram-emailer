@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
+import os
 import smtplib
 from email.message import EmailMessage
 
-from dotenv import dotenv_values
 from instagrapi import Client
 
 EMAIL_SUBJECT = "Unread Instagram Messages"
@@ -80,11 +80,10 @@ def get_unread_messages(client: Client) -> str | None:
 
 
 def main():
-    config = dotenv_values(".env")
-    email_address = config.get("EMAIL")
-    gmail_password = config.get("GMAIL_APP_PASSWORD")
-    instagram_username = config.get("INSTAGRAM_USERNAME")
-    instagram_password = config.get("INSTAGRAM_PASSWORD")
+    email_address = os.getenv("EMAIL")
+    gmail_password = os.getenv("GMAIL_APP_PASSWORD")
+    instagram_username = os.getenv("INSTAGRAM_USERNAME")
+    instagram_password = os.getenv("INSTAGRAM_PASSWORD")
 
     if not email_address or not gmail_password:
         err = "Email address and Gmail app password are required in .env file"
